@@ -1,0 +1,63 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ModernPrj_Linux_CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    name: "Linux ModernPrj Actions"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: lukka/get-cmake@latest
+      - name: Install GCC-12
+        run: |
+          sudo apt-get update
+          sudo apt install gcc-12 g++-12 -y
+          gcc --version
+          g++ --version
+          ls /usr/bin/gcc*
+        shell: bash
+      - name: Install Third party library
+        run: |
+          echo cd ${{ github.workspace }}
+          cd ${{ github.workspace }}
+          echo ls
+          ls
+          sudo apt-get update
+          sudo apt-get install libhdf5-dev libcgns-dev libmetis-dev libmpich-dev -y
+        shell: bash
+      - name: CMake Build and Install and test
+        #env:
+        #   CC:   gcc-12
+        #   CXX:  g++-12
+        run: |
+          cd ${{ github.workspace }}
+          ls
+          mkdir build
+          cd build
+          echo MPI_HOME_INC
+          echo MPI_HOME_LIB
+          export MPI_HOME_INC="/usr/include/x86_64-linux-gnu/mpich"
+          export MPI_HOME_LIB="/usr/lib/x86_64-linux-gnu/libmpich.so"
+          export CGNS_HOME_INC="/usr/include"
+          export CGNS_HOME_LIB="/usr/lib/x86_64-linux-gnu/libcgns.so"
+          export METIS_HOME_INC="/usr/include"
+          export METIS_HOME_LIB="/usr/lib/x86_64-linux-gnu/libmetis.so"
+          cmake --version
+          cmake -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/Run ../
+          cmake --build . --parallel 4
+          cmake --install .
+          ctest
+        shell: bash 
