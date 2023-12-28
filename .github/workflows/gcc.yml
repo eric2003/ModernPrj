@@ -22,11 +22,15 @@ jobs:
       - uses: actions/checkout@v2
       - uses: lukka/get-cmake@latest
       - uses: Dup4/actions-setup-gcc@v1
-      - name: Check GCC version
+      - uses: actions/setup-python@v2
+        with:      
+          python-version: '3.12'
+      - name: Check GCC and python version
         run: |
           sudo apt-get update
           gcc --version
           g++ --version
+          python --version
           ls /usr/bin/gcc*
         shell: bash
       - name: Install Third party library
