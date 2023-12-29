@@ -1,0 +1,11 @@
+# This is a basic workflow to help you get started with Actions
+name: GitHub Default environment variables
+on: [push]
+jobs:
+  Display-GitHub-Default-environment-variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Default-environment-variables
+        run: |    
+          echo "CI=$env:CI."
+          echo "RUNNER_OS=$env:RUNNER_OS."
