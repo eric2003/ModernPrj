@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Default-environment-variables
         run: |    
-          echo "CI=$CI."
-          echo "GITHUB_ACTION=$GITHUB_ACTION."
-          echo "GITHUB_ACTION_PATH=$GITHUB_ACTION_PATH."
-          echo "RUNNER_OS=$RUNNER_OS."
+          echo "CI=$env:CI."
+          echo "RUNNER_OS=$env:RUNNER_OS."
+          echo "GITHUB_ACTION=$env:GITHUB_ACTION."
+          echo "GITHUB_ACTION_PATH=$env:GITHUB_ACTION_PATH."
