@@ -1,9 +1,9 @@
 # This is a basic workflow to help you get started with Actions
-name: GitHub Default environment variables
+name: Windows-environment variables
 on: [push]
 jobs:
   Display-GitHub-Default-environment-variables:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Default-environment-variables
         run: |    
