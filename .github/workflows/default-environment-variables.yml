@@ -10,4 +10,7 @@ jobs:
     steps:
       - name: Default-environment-variables
         run: |    
-          echo "CI=${{ env.CI }}."
+          echo "github.action=${{ github.action }}."
+          echo "github.action_path=${{ github.action_path }}."
+          echo "github.action_ref=${{ github.action_ref }}."
+          echo "github.action_repository=${{ github.action_repository }}."
