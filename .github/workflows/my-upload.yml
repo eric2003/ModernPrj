@@ -1,4 +1,4 @@
-name: Download and Show File Content
+name: MY Upload
 
 on:
   workflow_dispatch:
@@ -11,28 +11,10 @@ jobs:
       - name: Prepare sample.txt
         run: |
           expr 1 + 1 > sample.txt
-          pwd
-          ls -la
+          ls
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
           path: sample.txt
-  download-file:
-    name: download-and-show-file
-    runs-on: ubuntu-latest
-    needs: upload-file
-    steps:
-      - name: Show Directory
-        run: |
-          pwd
-          ls -la
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-      - name: Show file content
-        run: |
-          pwd
-          ls -la
-          cat sample.txt
+          
