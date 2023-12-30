@@ -24,13 +24,10 @@ jobs:
     steps:
       - name: Show Directory
         run: |
-          pwd
           ls
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: my-artifact
       - name: Show file content
-        run: |
-          pwd
-          cat sample.txt
+        run: cat sample.txt
