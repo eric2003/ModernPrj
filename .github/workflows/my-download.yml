@@ -1,0 +1,24 @@
+name: Download and Show File Content
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download-file:
+    name: download-and-show-file
+    runs-on: ubuntu-latest
+    needs: upload-file
+    steps:
+      - name: Show Directory
+        run: |
+          pwd
+          ls -la
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+      - name: Show file content
+        run: |
+          pwd
+          ls -la
+          cat sample.txt
