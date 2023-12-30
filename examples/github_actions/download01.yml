@@ -8,16 +8,11 @@ jobs:
     name: download-and-show-file
     runs-on: ubuntu-latest
     steps:
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: sample.txt
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: my-artifact
+          name: output-log-file
         
       - name: Show file content
-        run: cat sample.txt
+        run: cat output.log
           
