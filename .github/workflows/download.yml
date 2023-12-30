@@ -1,0 +1,18 @@
+name: Download and Show File Content
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download-file:
+    name: download-and-show-file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: output-log-file
+        
+      - name: Show file content
+        run: cat output.log
+          
