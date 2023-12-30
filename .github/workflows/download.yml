@@ -4,24 +4,32 @@ on:
   workflow_dispatch:
 
 jobs:
-  download-file:
-    name: download-and-show-file
+  upload-file:
+    name: upload-file
     runs-on: ubuntu-latest
     steps:
       - shell: bash
         run: |
           expr 1 + 1 > sample.txt
+          pwd
           ls
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
           path: sample.txt
+  download-file:
+    name: download-and-show-file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Directory
+      - shell: bash
+        run: |
+          pwd
+          ls
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: my-artifact
-        
       - name: Show file content
         run: cat sample.txt
-          
