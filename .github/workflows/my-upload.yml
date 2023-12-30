@@ -19,7 +19,4 @@ jobs:
         with:
           name: my-artifact
           path: sample.txt
-          
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-      - name: Download and Install MPI HDF5 CGNS METIS          
+       
