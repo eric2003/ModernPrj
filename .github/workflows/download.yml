@@ -11,7 +11,8 @@ jobs:
       - name: Prepare sample.txt
         run: |
           expr 1 + 1 > sample.txt
-          ls
+          pwd
+          ls -la
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -25,7 +26,7 @@ jobs:
       - name: Show Directory
         run: |
           pwd
-          ls
+          ls -la
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
@@ -33,4 +34,5 @@ jobs:
       - name: Show file content
         run: |
           pwd
+          ls -la
           cat sample.txt
