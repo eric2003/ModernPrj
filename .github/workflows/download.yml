@@ -8,10 +8,9 @@ jobs:
     name: upload-file
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
+      - name: Prepare sample.txt
         run: |
           expr 1 + 1 > sample.txt
-          pwd
           ls
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -23,9 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show Directory
-      - shell: bash
         run: |
-          pwd
           ls
       - name: Download artifact
         uses: actions/download-artifact@v3
