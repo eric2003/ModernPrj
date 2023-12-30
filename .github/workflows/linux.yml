@@ -19,7 +19,7 @@ jobs:
     name: "Linux ModernPrj Actions"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: lukka/get-cmake@latest
       - name: Install GCC-12
         run: |
