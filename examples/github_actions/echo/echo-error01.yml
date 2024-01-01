@@ -11,5 +11,4 @@ jobs:
       - name: echo error
         run: |
           echo "::error::Tests failed"
-          echo "::error::Haha"
        
