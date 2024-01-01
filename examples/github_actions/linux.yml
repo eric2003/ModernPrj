@@ -21,16 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: lukka/get-cmake@latest
-      - uses: Dup4/actions-setup-gcc@v1
-      - uses: actions/setup-python@v2
-        with:      
-          python-version: '3.12'
-      - name: Check GCC and python version
+      - name: Install GCC-12
         run: |
           sudo apt-get update
+          sudo apt install gcc-12 g++-12 -y
           gcc --version
           g++ --version
-          python --version
           ls /usr/bin/gcc*
         shell: bash
       - name: Install Third party library
