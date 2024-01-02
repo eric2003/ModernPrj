@@ -8,7 +8,11 @@ jobs:
     name: echo-test
     runs-on: ubuntu-latest
     steps:
-      - name: echo error
+      - name: enable step debug logging
+        run: echo "Setting ACTIONS_STEP_DEBUG to true"
+        env:
+          ACTIONS_STEP_DEBUG: true
+      - name: echo debug
         run: |
           echo "::debug::Set the Octocat variable"
        
