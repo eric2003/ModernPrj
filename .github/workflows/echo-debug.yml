@@ -1,0 +1,14 @@
+name: Echo Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo-test:
+    name: echo-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo error
+        run: |
+          echo "::debug::Set the Octocat variable"
+       
