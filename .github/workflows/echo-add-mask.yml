@@ -7,10 +7,13 @@ jobs:
   echo-test:
     name: echo-test
     runs-on: ubuntu-latest
+    env:
+      MY_NAME: "Mona The Octocat"    
     steps:
-      - name: add-mask test
+      - name: step01
         run: |
-            echo "::add-mask::Mona The Octocat"
-      - name: echo test
+            echo "MY_NAME 01 =$MY_NAME"
+      - name: step02
         run: |
-            echo "Mona The Octocat"            
+            echo "MY_NAME 02 =::add-mask::$MY_NAME"
+            echo "MY_NAME 03 =$MY_NAME"

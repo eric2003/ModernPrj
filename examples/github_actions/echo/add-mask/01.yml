@@ -1,0 +1,16 @@
+name: Echo Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo-test:
+    name: echo-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: add-mask test
+        run: |
+            echo "::add-mask::Mona The Octocat"
+      - name: echo test
+        run: |
+            echo "Mona The Octocat"            
