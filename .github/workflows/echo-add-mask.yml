@@ -7,9 +7,10 @@ jobs:
   echo-test:
     name: echo-test
     runs-on: ubuntu-latest
-    env:
-      MY_NAME: "Mona The Octocat"    
     steps:
-      - name: Group of log lines
+      - name: add-mask test
         run: |
-            echo "::add-mask::$MY_NAME"
+            echo "::add-mask::Mona The Octocat"
+      - name: echo test
+        run: |
+            echo "Mona The Octocat"            
