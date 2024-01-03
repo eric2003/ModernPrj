@@ -1,0 +1,14 @@
+name: Echo Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo-test:
+    name: echo-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo warning
+        run: |
+          echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+       
