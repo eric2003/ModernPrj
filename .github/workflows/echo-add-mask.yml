@@ -1,0 +1,15 @@
+name: Echo Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo-test:
+    name: echo-test
+    runs-on: ubuntu-latest
+    env:
+      MY_NAME: "Mona The Octocat"    
+    steps:
+      - name: Group of log lines
+        run: |
+            echo "::add-mask::$MY_NAME"
