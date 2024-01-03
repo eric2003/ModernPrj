@@ -15,5 +15,6 @@ jobs:
             echo "MY_NAME 01 =$MY_NAME"
       - name: step02
         run: |
-            ::add-mask::$MY_NAME
+            echo ::add-mask::$MY_NAME
             echo "MY_NAME 02 =$MY_NAME"
+            echo "MY_NAME 03 =Mona The Octocat"
