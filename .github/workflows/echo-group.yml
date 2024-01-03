@@ -1,0 +1,19 @@
+name: Echo Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  echo-test:
+    name: echo-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Group of log lines
+        run: |
+            echo "::group::My title"
+            echo "Inside group"
+            echo "::endgroup::"    
+      - name: Group of log lines
+        run: |
+            echo "My title 1"
+            echo "No group"       
