@@ -4,35 +4,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  secret-generator:
+  generate-secret:
     runs-on: ubuntu-latest
     outputs:
-      handle: ${{ steps.generate-secret.outputs.handle }}
+      secret: ${{ steps.generate-secret.outputs.secret }}
     steps:
-    #- uses: eric2003/ModernPrj@develop
-    #  with:
-    #    credentials: ${{ secrets.SECRET_STORE_CREDENTIALS }}
-    #    instance: ${{ secrets.SECRET_STORE_INSTANCE }}
-    - name: generate secret
+    - name: Generate Secret
       id: generate-secret
-      shell: bash
       run: |
+        echo "Generating a random secret"
         GENERATED_SECRET=$((RANDOM))
         echo "::add-mask::$GENERATED_SECRET"
-        SECRET_HANDLE=$(secret-store store-secret "$GENERATED_SECRET")
-        echo "handle=$SECRET_HANDLE" >> "$GITHUB_OUTPUT"
-  secret-consumer:
-    runs-on: macos-latest
-    needs: secret-generator
+        echo "::set-output name=secret::$GENERATED_SECRET"
+
+  use-secret:
+    runs-on: ubuntu-latest
+    needs: generate-secret
     steps:
-    #- uses: eric2003/ModernPrj@develop
-    #  with:
-    #    credentials: ${{ secrets.SECRET_STORE_CREDENTIALS }}
-    #    instance: ${{ secrets.SECRET_STORE_INSTANCE }}
-    - name: use secret
-      shell: bash
+    - name: Use the Generated Secret
       run: |
-        SECRET_HANDLE="${{ needs.secret-generator.outputs.handle }}"
-        RETRIEVED_SECRET=$(secret-store retrieve-secret "$SECRET_HANDLE")
+        echo "Using the secret from the previous job"
+        RETRIEVED_SECRET=${{ needs.generate-secret.outputs.secret }}
         echo "::add-mask::$RETRIEVED_SECRET"
         echo "We retrieved our masked secret: $RETRIEVED_SECRET"
