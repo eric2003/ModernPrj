@@ -7,17 +7,18 @@ jobs:
   generate-secret:
     runs-on: ubuntu-latest
     outputs:
-      secret: ${{ steps.generate-secret.outputs.secret }}
+      secret: ${{ steps.sets-a-secret.outputs.secret-number }}    
     steps:
-    - name: Generate Secret
-      id: generate-secret
-      run: |
-        echo "Generating a random secret"
-        GENERATED_SECRET=$((RANDOM))
-        echo "GENERATED_SECRET 01= $GENERATED_SECRET"
-        echo "::add-mask::$GENERATED_SECRET"
-        echo "GENERATED_SECRET=$GENERATED_SECRET" >> "$GITHUB_ENV"
-
+      - id: sets-a-secret
+        name: Generate, mask, and output a secret
+        run: |
+          the_secret=$((RANDOM))
+          echo "::add-mask::$the_secret"
+          echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
+          cat $GITHUB_OUTPUT
+      - name: Use that secret output (protected by a mask)
+        run: |
+          echo "the secret number is ${{ steps.sets-a-secret.outputs.secret-number }}"
   use-secret:
     runs-on: ubuntu-latest
     needs: generate-secret
@@ -26,5 +27,8 @@ jobs:
       run: |
         echo "Using the secret from the previous job"
         RETRIEVED_SECRET=${{ needs.generate-secret.outputs.secret }}
+        echo "RETRIEVED_SECRET 01=$RETRIEVED_SECRET"
         echo "::add-mask::$RETRIEVED_SECRET"
         echo "We retrieved our masked secret: $RETRIEVED_SECRET"
+        
+      
