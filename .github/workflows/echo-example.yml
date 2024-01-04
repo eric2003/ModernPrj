@@ -26,8 +26,11 @@ jobs:
     - name: Use the Generated Secret
       run: |
         echo "Using the secret from the previous job"
-        RETRIEVED_SECRET=${{ needs.generate-secret.outputs.secret }}
+        #RETRIEVED_SECRET=${{ needs.generate-secret.outputs.secret }}
+        RETRIEVED_SECRET=${{ jobs.generate-secret.outputs.secret }}
+        RETRIEVED_SECRET1=${{ jobs.previous_job_id.outputs.secret }}
         echo "RETRIEVED_SECRET 01=$RETRIEVED_SECRET"
+        echo "RETRIEVED_SECRET1 01=$RETRIEVED_SECRET1"
         echo "::add-mask::$RETRIEVED_SECRET"
         echo "We retrieved our masked secret: $RETRIEVED_SECRET"
         
