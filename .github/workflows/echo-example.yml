@@ -9,7 +9,7 @@ jobs:
     outputs:
       handle: ${{ steps.generate-secret.outputs.handle }}
     steps:
-    - uses: eric2003/ModernPrj
+    - uses: eric2003/ModernPrj@develop
       with:
         credentials: ${{ secrets.SECRET_STORE_CREDENTIALS }}
         instance: ${{ secrets.SECRET_STORE_INSTANCE }}
@@ -25,7 +25,7 @@ jobs:
     runs-on: macos-latest
     needs: secret-generator
     steps:
-    - uses: eric2003/ModernPrj
+    - uses: eric2003/ModernPrj@develop
       with:
         credentials: ${{ secrets.SECRET_STORE_CREDENTIALS }}
         instance: ${{ secrets.SECRET_STORE_INSTANCE }}
