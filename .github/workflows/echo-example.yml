@@ -15,7 +15,8 @@ jobs:
         echo "Generating a random secret"
         GENERATED_SECRET=$((RANDOM))
         echo "::add-mask::$GENERATED_SECRET"
-        echo "::set-output name=secret::$GENERATED_SECRET"
+        #echo "::set-output name=secret::$GENERATED_SECRET"
+        echo "name=$GENERATED_SECRET" >> "$GITHUB_ENV"
 
   use-secret:
     runs-on: ubuntu-latest
