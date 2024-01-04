@@ -1,0 +1,13 @@
+name: Echo Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dump_contexts_to_log:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Dump vars context
+       env:
+         VARS_JSON: ${{ toJSON(vars) }}
+       run: echo "${VARS_JSON}"
