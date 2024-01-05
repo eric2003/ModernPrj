@@ -7,8 +7,8 @@ on:
 jobs:
   secret-generator:
     runs-on: ubuntu-latest
-    #outputs:
-    #  secret: ${{ steps.generate-step.outputs.secret-number }}
+    outputs:
+      handle: ${{ steps.generate-step.outputs.secret-number }}
     steps:
       - id: generate-step
         name: Generate, mask, and output a secret
