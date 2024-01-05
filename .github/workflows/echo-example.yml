@@ -5,14 +5,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  dump_contexts_to_log:
-    runs-on: ubuntu-latest
+  build:
+    name: Build job
     steps:
-      - name: Dump vars context
-        env:
-          VARS_JSON: ${{ toJSON(vars) }}
-        run: echo "${VARS_JSON}"
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"       
+      - name: Print job name
+        run: echo ${{ vars.JOB_NAME }}        
+ 
