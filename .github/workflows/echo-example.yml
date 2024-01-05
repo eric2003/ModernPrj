@@ -7,7 +7,8 @@ on:
 jobs:
   build:
     name: Build job
+    runs-on: ubuntu-latest
     steps:
       - name: Print job name
-        run: echo ${{ vars.JOB_NAME }}        
+        run: echo ${{ vars.JOB_NAME }}
  
