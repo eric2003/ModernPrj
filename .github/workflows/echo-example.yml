@@ -8,14 +8,18 @@ jobs:
   secret-generator:
     runs-on: ubuntu-latest
     outputs:
-      secret: ${{ steps.generate-step.outputs.mysecret }}
+      secret: ${{ steps.generate-step.outputs.secret-number }}
     steps:
       - id: generate-step
+        name: Generate, mask, and output a secret
         run: |
-          mysecret=$((RANDOM))
-          echo "mysecret value: $mysecret"
-          echo "::add-mask::$mysecret"
-          echo "mysecret=$mysecret" >> "$GITHUB_OUTPUT"
+          the_secret=$((RANDOM))
+          #echo "the_secret value: $the_secret"
+          echo "::add-mask::$the_secret"
+          echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
+      - name: Use that secret output (protected by a mask)
+        run: |
+          echo "the secret number is ${{ steps.generate-step.outputs.secret-number }}"          
   secret-consumer:
       runs-on: ubuntu-latest
       needs: secret-generator
